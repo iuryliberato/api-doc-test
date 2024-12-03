@@ -16,12 +16,26 @@ const swaggerOptions = {
                       email: { type: 'string', format: 'email' },
                       password: { type: 'string', format: 'password' },
                   },
-                  required: ['username', 'email', 'password'],
+                  required: ['email', 'password'],
+              },
+          },
+          securitySchemes: {
+              ApiKeyAuth: {
+                  type: 'apiKey',
+                  in: 'header',
+                  name: 'X-API-Key',
+                  description: 'API Key required for authentication',
               },
           },
       },
+      security: [
+          {
+              ApiKeyAuth: [],
+          },
+      ],
   },
-  apis: ['./src/routes/*.ts'], // Path to your annotated route files
+  
+  apis: ['./src/routes/index.ts'], 
 };
 
 
